@@ -127,20 +127,19 @@ class  Hand(Deck):
 	# 			init_cards.pop(x)
 
 def play_go_fish_game():
-    new_deck = Deck()
-    deck = deck.shuffle()
+    deck = Deck()
+    #deck = new_deck.shuffle()
     p1_cards = deck.deal(1, 7)
     p2_cards = deck.deal(1, 7)
     p1_score = 0
     p2_score = 0
-
-	print("\n*** BEGIN THE GAME ***\n")
 
     while True:
         if p1_cards == []:
             break
         if p2_cards == []:
             break
+        print(p1_cards)
         p1_input = input("Player 1, please choose a card rank you would like to ask the other player if they have. It must be a suit you have.")
         for x in p2_cards:
             if int(p1_input) == x.suit:
@@ -161,6 +160,7 @@ def play_go_fish_game():
                 break
             if p2_cards == []:
                 break
+            print(p2_cards)
             p2_input = input("Player 2, please choose a card rank you would like to ask the other player if they have. It must be a suit you have.")
             for x in p1_cards:
                 if int(p1_input) == x.suit:
@@ -172,16 +172,15 @@ def play_go_fish_game():
                     print("Go Fish")
                     p1_cards += deck.pop(1,1)
                     break
-
-	if p1_score > p2_score:
-		return "Player1", p1_score, p2_score
-	elif p2_score > p1_score:
-		return "Player2", p1_score, p2_score
-	else:
-		return "Tie", p1_score, p2_score
+    if p1_score > p2_score:
+        return "Player1", p1_score, p2_score
+    elif p2_score > p1_score:
+        return "Player2", p1_score, p2_score
+    else:
+        return "Tie", p1_score, p2_score
 
 if __name__ == "__main__":
-	result = play_war_game()
+	result = play_go_fish_game()
 	print("""\n\n******\nTOTAL SCORES:\nPlayer 1: {}\nPlayer 2: {}\n\n""".format(result[1],result[2]))
 	if result[0] != "Tie":
 		print(result[0], "wins")
